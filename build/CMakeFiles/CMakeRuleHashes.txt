@@ -1,0 +1,2 @@
+# Hashes of file build rules.
+6e75612684082ea235d6b41c75ab544f CMakeFiles/SpecGAN_autogen

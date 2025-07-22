@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Name=SpecGAN Tool
+Comment=使用GAN网络转换光谱图像
+Exec=SpecGAN
+Icon=SpecGAN
+Terminal=false
+Type=Application
+Categories=Graphics;Science;

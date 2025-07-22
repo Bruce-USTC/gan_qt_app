@@ -1,0 +1,8 @@
+/home/cat/Videos/gan_qt_app/build/CMakeFiles/install/strip.dir
+/home/cat/Videos/gan_qt_app/build/CMakeFiles/install.dir
+/home/cat/Videos/gan_qt_app/build/CMakeFiles/list_install_components.dir
+/home/cat/Videos/gan_qt_app/build/CMakeFiles/rebuild_cache.dir
+/home/cat/Videos/gan_qt_app/build/CMakeFiles/edit_cache.dir
+/home/cat/Videos/gan_qt_app/build/CMakeFiles/install/local.dir
+/home/cat/Videos/gan_qt_app/build/CMakeFiles/SpecGAN.dir
+/home/cat/Videos/gan_qt_app/build/CMakeFiles/SpecGAN_autogen.dir
