@@ -6,19 +6,56 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>850</width>
-    <height>550</height>
+    <width>1024</width>
+    <height>680</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>RKNN GAN 处理工具 (C++/Qt)</string>
+   <string>SpecGAN: 光谱图像转换工具</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">
+/* ---- 全局样式 ---- */
+#MainWindow {
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(27, 38, 59, 255), stop:1 rgba(13, 19, 31, 255));
+}
+
+QStatusBar {
+    background-color: rgba(27, 38, 59, 0.8);
+    color: #9FB6D9;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+QToolTip {
+    background-color: #1B263B;
+    color: #EAEAEA;
+    border: 1px solid #40E0D0;
+    border-radius: 4px;
+}
+</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout">
+   <layout class="QVBoxLayout" name="verticalLayout" stretch="0,1">
+    <property name="spacing">
+     <number>20</number>
+    </property>
+    <property name="leftMargin">
+     <number>20</number>
+    </property>
+    <property name="topMargin">
+     <number>20</number>
+    </property>
+    <property name="rightMargin">
+     <number>20</number>
+    </property>
+    <property name="bottomMargin">
+     <number>20</number>
+    </property>
     <item>
      <widget class="QFrame" name="topFrame">
       <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
+       <enum>QFrame::NoFrame</enum>
       </property>
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
@@ -41,17 +78,46 @@
         <widget class="QPushButton" name="selectButton">
          <property name="minimumSize">
           <size>
-           <width>120</width>
-           <height>40</height>
+           <width>160</width>
+           <height>50</height>
           </size>
          </property>
          <property name="font">
           <font>
+           <family>Microsoft YaHei UI</family>
            <pointsize>12</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
           </font>
          </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="toolTip">
+          <string>从本地磁盘选择一张图片作为输入</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+    color: #EAEAEA;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 129, 255, 150), stop:1 rgba(0, 255, 255, 180));
+    border: 1px solid #00FFFF;
+    border-radius: 8px;
+}
+QPushButton:hover {
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 129, 255, 200), stop:1 rgba(0, 255, 255, 220));
+    border: 1px solid #99FFFF;
+}
+QPushButton:pressed {
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 100, 200, 255), stop:1 rgba(0, 200, 200, 255));
+}
+QPushButton:disabled {
+    background-color: #555;
+    color: #888;
+    border: 1px solid #666;
+}</string>
+         </property>
          <property name="text">
-          <string>1. 选择图片</string>
+          <string>① 选择图像</string>
          </property>
         </widget>
        </item>
@@ -59,17 +125,46 @@
         <widget class="QPushButton" name="runButton">
          <property name="minimumSize">
           <size>
-           <width>120</width>
-           <height>40</height>
+           <width>160</width>
+           <height>50</height>
           </size>
          </property>
          <property name="font">
           <font>
+           <family>Microsoft YaHei UI</family>
            <pointsize>12</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
           </font>
          </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="toolTip">
+          <string>启动NPU，开始执行图像转换</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+    color: #FFFFFF;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 255, 127, 180), stop:1 rgba(0, 200, 200, 200));
+    border: 1px solid #00FF7F;
+    border-radius: 8px;
+}
+QPushButton:hover {
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 255, 127, 220), stop:1 rgba(0, 200, 200, 240));
+    border: 1px solid #80FFBF;
+}
+QPushButton:pressed {
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 200, 100, 255), stop:1 rgba(0, 150, 150, 255));
+}
+QPushButton:disabled {
+    background-color: #555;
+    color: #888;
+    border: 1px solid #666;
+}</string>
+         </property>
          <property name="text">
-          <string>2. 开始转换</string>
+          <string>② 开始转换</string>
          </property>
         </widget>
        </item>
@@ -77,17 +172,46 @@
         <widget class="QPushButton" name="saveButton">
          <property name="minimumSize">
           <size>
-           <width>120</width>
-           <height>40</height>
+           <width>160</width>
+           <height>50</height>
           </size>
          </property>
          <property name="font">
           <font>
+           <family>Microsoft YaHei UI</family>
            <pointsize>12</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
           </font>
          </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="toolTip">
+          <string>将右侧生成的图片保存到本地</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+    color: #FFFFFF;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(255, 165, 0, 180), stop:1 rgba(255, 69, 0, 200));
+    border: 1px solid #FFA500;
+    border-radius: 8px;
+}
+QPushButton:hover {
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(255, 165, 0, 220), stop:1 rgba(255, 69, 0, 240));
+    border: 1px solid #FFC04D;
+}
+QPushButton:pressed {
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(204, 132, 0, 255), stop:1 rgba(204, 55, 0, 255));
+}
+QPushButton:disabled {
+    background-color: #555;
+    color: #888;
+    border: 1px solid #666;
+}</string>
+         </property>
          <property name="text">
-          <string>3. 保存图片</string>
+          <string>③ 保存图像</string>
          </property>
         </widget>
        </item>
@@ -109,26 +233,39 @@
     </item>
     <item>
      <widget class="QFrame" name="imageFrame">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
       <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
+       <enum>QFrame::NoFrame</enum>
       </property>
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <property name="spacing">
+        <number>20</number>
+       </property>
        <item>
         <widget class="QLabel" name="inputImageLabel">
+         <property name="font">
+          <font>
+           <family>Microsoft YaHei UI</family>
+           <pointsize>24</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="styleSheet">
-          <string notr="true">background-color: rgb(230, 230, 230);</string>
+          <string notr="true">QLabel {
+    background-color: rgba(0, 0, 0, 0.4);
+    border: 2px dashed #4A5A73;
+    border-radius: 12px;
+    color: rgba(127, 140, 141, 0.7);
+}
+QLabel:hover {
+    border: 2px dashed #40E0D0;
+}</string>
          </property>
          <property name="text">
-          <string>输入图片预览</string>
+          <string>Input</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -137,11 +274,24 @@
        </item>
        <item>
         <widget class="QLabel" name="outputImageLabel">
+         <property name="font">
+          <font>
+           <family>Microsoft YaHei UI</family>
+           <pointsize>24</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="styleSheet">
-          <string notr="true">background-color: rgb(217, 217, 217);</string>
+          <string notr="true">QLabel {
+    background-color: rgba(0, 0, 0, 0.4);
+    border: 2px dashed #4A5A73;
+    border-radius: 12px;
+    color: rgba(127, 140, 141, 0.7);
+}</string>
          </property>
          <property name="text">
-          <string>输出图片预览</string>
+          <string>Output</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -158,9 +308,20 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>850</width>
-     <height>21</height>
+     <width>1024</width>
+     <height>25</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QMenuBar {
+    background-color: #1B263B;
+    color: #EAEAEA;
+    font-weight: bold;
+}
+
+QMenuBar::item:selected {
+    background-color: #3498db;
+}</string>
    </property>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>

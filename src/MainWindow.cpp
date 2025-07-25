@@ -11,6 +11,11 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    
+    // --- 在这里修改代码 ---
+    setWindowTitle("SpecGAN: 光谱图像转换工具"); 
+
+    
 
     processor_ = new RknnProcessor;
     processor_->moveToThread(&workerThread_);

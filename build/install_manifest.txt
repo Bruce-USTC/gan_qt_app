@@ -1,4 +1,0 @@
-/usr/local/bin/SpecGAN
-/usr/local/share/SpecGAN/models/wo_scatter_norm_10_pix2pix.rknn
-/usr/local/share/applications/SpecGAN.desktop
-/usr/local/share/pixmaps/SpecGAN.png
